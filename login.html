@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Srinivasa School Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #f8b500;
+            --accent-color: #e74c3c;
+            --dark-color: #2c3e50;
+            --light-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3d72 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="transparent" width="1200" height="800"/><g fill="rgba(255,255,255,0.1)"><circle cx="200" cy="150" r="80"/><circle cx="800" cy="250" r="120"/><circle cx="400" cy="600" r="100"/><circle cx="1000" cy="500" r="90"/><circle cx="600" cy="100" r="60"/><circle cx="300" cy="400" r="70"/></g></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-left {
+            background: linear-gradient(135deg, var(--primary-color), #1e3d72);
+            color: white;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .login-left::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="school" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23school)"/></svg>');
+        }
+
+        .school-logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .school-info {
+            position: relative;
+            z-index: 2;
+        }
+
+        .school-info h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .school-info p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .school-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .school-features li {
+            padding: 8px 0;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .school-features li i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        .login-right {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .user-type-selection {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .user-type-btn {
+            flex: 1;
+            padding: 20px 15px;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+        }
+
+        .user-type-btn:hover {
+            border-color: var(--primary-color);
+            background: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        .user-type-btn.active {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(44, 90, 160, 0.3);
+        }
+
+        .user-type-btn i {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .user-type-btn .user-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .user-type-btn .user-desc {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .login-form {
+            display: none;
+        }
+
+        .login-form.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            padding-left: 50px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+        }
+
+        .form-group .input-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+			margin-top: 16px; /* Adjust for label height */
+            font-size: 1.1rem;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color), #1e3d72);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #1e3d72, var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(44, 90, 160, 0.3);
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .login-options a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-options a:hover {
+            text-decoration: underline;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            z-index: 10;
+        }
+
+        .back-to-home:hover {
+            color: white;
+        }
+
+        .demo-credentials {
+            background: #e8f4fd;
+            border: 1px solid #b3d9f7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .demo-credentials h6 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .demo-credentials .cred-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .demo-credentials .cred-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .login-container {
+                grid-template-columns: 1fr;
+                margin: 20px;
+                max-width: 400px;
+            }
+
+            .login-left {
+                padding: 40px 30px;
+            }
+
+            .school-info h1 {
+                font-size: 1.5rem;
+            }
+
+            .school-info p {
+                font-size: 1rem;
+            }
+
+            .login-right {
+                padding: 30px;
+            }
+
+            .user-type-selection {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .user-type-btn {
+                padding: 15px;
+            }
+
+            .user-type-btn i {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #f8f9fa;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary-color), #1e3d72);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-nav h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .dashboard-logout {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dashboard-logout:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .dashboard-content {
+            padding: 30px 0;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dashboard-card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .dashboard-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Different colors for different card types */
+        .card-grades .dashboard-card-icon { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .card-attendance .dashboard-card-icon { background: linear-gradient(135deg, #27ae60, #229954); }
+        .card-assignments .dashboard-card-icon { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .card-schedule .dashboard-card-icon { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .card-fees .dashboard-card-icon { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .card-library .dashboard-card-icon { background: linear-gradient(135deg, #1abc9c, #16a085); }
+
+        /* Teacher specific cards */
+        .card-students .dashboard-card-icon { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .card-classes .dashboard-card-icon { background: linear-gradient(135deg, #27ae60, #229954); }
+        .card-reports .dashboard-card-icon { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .card-materials .dashboard-card-icon { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-to-home">
+        <i class="fas fa-arrow-left me-2"></i>Back to Home
+    </a>
+
+    <div class="login-container">
+        <!-- Left Side - School Info -->
+        <div class="login-left">
+            <div class="school-logo">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="school-info">
+                <h1>Srinivasa School</h1>
+                <p>Excellence in Education</p>
+                <ul class="school-features">
+                    <li><i class="fas fa-check"></i> 25+ Years of Excellence</li>
+                    <li><i class="fas fa-check"></i> 1500+ Happy Students</li>
+                    <li><i class="fas fa-check"></i> Expert Faculty</li>
+                    <li><i class="fas fa-check"></i> Modern Facilities</li>
+                    <li><i class="fas fa-check"></i> 98% Success Rate</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Forms -->
+        <div class="login-right">
+            <div class="login-header">
+                <h2>Welcome Back!</h2>
+                <p>Please sign in to access your portal</p>
+            </div>
+
+            <!-- User Type Selection -->
+            <div class="user-type-selection">
+                <div class="user-type-btn active" onclick="selectUserType('student')">
+                    <i class="fas fa-user-graduate"></i>
+                    <div class="user-title">Student</div>
+                    <div class="user-desc">Access grades & assignments</div>
+                </div>
+                <div class="user-type-btn" onclick="selectUserType('teacher')">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <div class="user-title">Teacher</div>
+                    <div class="user-desc">Manage classes & students</div>
+                </div>
+            </div>
+
+            <!-- Student Login Form -->
+            <div class="login-form active" id="studentLogin">
+                <form onsubmit="loginUser(event, 'student')">
+                    <div class="form-group">
+                        <label for="studentId">Student ID</label>
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="studentId" placeholder="Enter your Student ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentPassword">Password</label>
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="studentPassword" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login as Student
+                    </button>
+                </form>
+                <div class="login-options">
+                    <a href="#">Forgot Password?</a>
+                    <a href="index.html">Back to Home</a>
+                </div>
+                
+                <!-- Demo Credentials -->
+                <div class="demo-credentials">
+                    <h6><i class="fas fa-info-circle me-2"></i>Demo Credentials</h6>
+                    <div class="cred-item">
+                        <span>Student ID:</span>
+                        <strong>STU001</strong>
+                    </div>
+                    <div class="cred-item">
+                        <span>Password:</span>
+                        <strong>student123</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Teacher Login Form -->
+            <div class="login-form" id="teacherLogin">
+                <form onsubmit="loginUser(event, 'teacher')">
+                    <div class="form-group">
+                        <label for="teacherId">Teacher ID</label>
+                        <i class="fas fa-user-tie input-icon"></i>
+                        <input type="text" id="teacherId" placeholder="Enter your Teacher ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacherPassword">Password</label>
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="teacherPassword" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login as Teacher
+                    </button>
+                </form>
+                <div class="login-options">
+                    <a href="#">Forgot Password?</a>
+                    <a href="index.html">Back to Home</a>
+                </div>
+
+                <!-- Demo Credentials -->
+                <div class="demo-credentials">
+                    <h6><i class="fas fa-info-circle me-2"></i>Demo Credentials</h6>
+                    <div class="cred-item">
+                        <span>Teacher ID:</span>
+                        <strong>TEA001</strong>
+                    </div>
+                    <div class="cred-item">
+                        <span>Password:</span>
+                        <strong>teacher123</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div class="dashboard" id="studentDashboard">
+        <div class="dashboard-header">
+            <div class="container">
+                <div class="dashboard-nav">
+                    <h2><i class="fas fa-user-graduate me-2"></i>Student Dashboard</h2>
+                    <button class="dashboard-logout" onclick="logout()">
+                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-content">
+            <div class="container">
+                <!-- Welcome Message -->
+                <div class="alert alert-success mb-4">
+                    <h4>Welcome back, <span id="studentName">John Doe</span>! 👋</h4>
+                    <p>Here's your academic overview for today.</p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-box">
+                        <span class="stat-number">85%</span>
+                        <div class="stat-label">Attendance</div>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">A+</span>
+                        <div class="stat-label">Current Grade</div>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">3</span>
+                        <div class="stat-label">Pending Tasks</div>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">12</span>
+                        <div class="stat-label">Total Subjects</div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Cards -->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card card-grades">
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>My Grades</h4>
+                        <p>View your latest exam results and progress reports</p>
+                    </div>
+
+                    <div class="dashboard-card card-attendance">
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h4>Attendance</h4>
+                        <p>Check your attendance record and leave applications</p>
+                    </div>
+
+                    <div class="dashboard-card card-assignments">
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h4>Assignments</h4>
+                        <p>View pending assignments and submit your work</p>
+                    </div>
+
+                    <div class="dashboard-card card-schedule">
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Time Table</h4>
+                        <p>Check your daily class schedule and timings</p>
+                    </div>
+
+                    <div class="dashboard-card card-fees">
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-money-bill"></i>
+                        </div>
+                        <h4>Fee Status</h4>
+                        <p>View fee structure and payment history</p>
+                    </div>
+
+                    <div class="dashboard-card card-library">
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h4>Library</h4>
+                        <p>Browse books and check your borrowing history</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teacher Dashboard -->
+    <div class="dashboard" id="teacherDashboard">
+        <div class="dashboard-header">
+            <div class="container">
+                <div class="dashboard-nav">
+                    <h2><i class="fas fa-chalkboard-teacher me-2"></i>Teacher Dashboard</h2>
+                    <button class="dashboard-logout" onclick="logout()">
+                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-content">
+            <div class="container">
+                <!-- Welcome Message -->
+                <div class="alert alert-primary mb-4">
+                    <h4>Welcome back, <span id="teacherName">Dr. Smith</span>! 📚</h4>
+                    <p>Manage your classes and track student progress.</p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-box">
+                        <span class="stat-number">156</span>
+                        <div class="stat-label">Total Students</div>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">8</span>
+                        <div class="stat-label">Classes Today</div>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">23</span>
+                        <div class="stat-label">Assignments to Grade</div>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">5</span>
+                        <div class="stat-label">Subjects</div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Cards -->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card card-students">
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>My Students</h4>
+                        <p>View and manage student profiles and progress</p>
+                    </div>
+
+                    <div class="dashboard-card card-classes">
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-chalkboard"></i>
+                        </div>
+                        <h4>Class Schedule</h4>
+                        <p>View your teaching schedule and class timings</p>
+                    </div>
+
+                    <div class="dashboard-card card-assignments">
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h4>Assignments</h4>
+                        <p>Create assignments and grade student submissions</p>
+                    </div>
+
+                    <div class="dashboard-card card-attendance">
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <h4>Attendance</h4>
+                        <p>Mark student attendance and generate reports</p>
+                    </div>
+
+                    <div class="dashboard-card card-reports">
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h4>Reports</h4>
+                        <p>Generate academic reports and analytics</p>
+                    </div>
+
+                    <div class="dashboard-card card-materials">
+                        <div class="dashboard-card-icon">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <h4>Course Materials</h4>
+                        <p>Upload and manage teaching resources</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+        
+        // Select user type (student or teacher)
+        function selectUserType(type) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.user-type-btn').forEach(btn => 
+                btn.classList.remove('active'));
+            
+            // Add active class to selected button
+            event.target.closest('.user-type-btn').classList.add('active');
+            
+            // Hide all forms
+            document.querySelectorAll('.login-form').forEach(form => 
+                form.classList.remove('active'));
+            
+            // Show selected form
+            document.getElementById(type + 'Login').classList.add('active');
+        }
+        
+        // Login function
+        function loginUser(event, userType) {
+            event.preventDefault();
+            
+            let id, password;
+            
+            if (userType === 'student') {
+                id = document.getElementById('studentId').value;
+                password = document.getElementById('studentPassword').value;
+                
+                // Demo credentials for students
+                if (id === 'STU001' && password === 'student123') {
+                    currentUser = { type: 'student', id: id, name: 'John Doe' };
+                    showDashboard('student');
+                } else {
+                    alert('Invalid credentials! Use: STU001 / student123');
+                    return;
+                }
+            } else {
+                id = document.getElementById('teacherId').value;
+                password = document.getElementById('teacherPassword').value;
+                
+                // Demo credentials for teachers
+                if (id === 'TEA001' && password === 'teacher123') {
+                    currentUser = { type: 'teacher', id: id, name: 'Dr. Smith' };
+                    showDashboard('teacher');
+                } else {
+                    alert('Invalid credentials! Use: TEA001 / teacher123');
+                    return;
+                }
+            }
+        }
+        
+        // Show dashboard
+        function showDashboard(userType) {
+            // Hide login container
+            document.querySelector('.login-container').style.display = 'none';
+            document.querySelector('.back-to-home').style.display = 'none';
+            
+            // Show selected dashboard
+            document.getElementById(userType + 'Dashboard').classList.add('active');
+            
+            // Update welcome message
+            if (userType === 'student') {
+                document.getElementById('studentName').textContent = currentUser.name;
+            } else {
+                document.getElementById('teacherName').textContent = currentUser.name;
+            }
+        }
+        
+        // Logout function
+        function logout() {
+            currentUser = null;
+            
+            // Hide all dashboards
+            document.querySelectorAll('.dashboard').forEach(dashboard => 
+                dashboard.classList.remove('active'));
+            
+            // Show login container
+            document.querySelector('.login-container').style.display = 'grid';
+            document.querySelector('.back-to-home').style.display = 'block';
+            
+            // Clear form fields
+            document.querySelectorAll('input[type="text"], input[type="password"]')
+                .forEach(input => input.value = '');
+            
+            // Reset user type selection
+            document.querySelectorAll('.user-type-btn').forEach(btn => 
+                btn.classList.remove('active'));
+            document.querySelector('.user-type-btn').classList.add('active');
+            
+            document.querySelectorAll('.login-form').forEach(form => 
+                form.classList.remove('active'));
+            document.getElementById('studentLogin').classList.add('active');
+        }
+        
+        // Add some interactive features for dashboard cards
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers to dashboard cards (placeholder functionality)
+            document.querySelectorAll('.dashboard-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const cardTitle = this.querySelector('h4').textContent;
+                    alert(`${cardTitle} feature will be implemented soon!`);
+                });
+            });
+        });
+        
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Press 'S' to switch to Student login
+            if (e.key.toLowerCase() === 's' && !e.target.matches('input')) {
+                selectUserType('student');
+            }
+            
+            // Press 'T' to switch to Teacher login
+            if (e.key.toLowerCase() === 't' && !e.target.matches('input')) {
+                selectUserType('teacher');
+            }
+            
+            // Press Escape to logout if in dashboard
+            if (e.key === 'Escape' && currentUser) {
+                logout();
+            }
+        });
+        
+        console.log('Srinivasa School Login Portal loaded successfully!');
+        console.log('Demo Credentials:');
+        console.log('Student - ID: STU001, Password: student123');
+        console.log('Teacher - ID: TEA001, Password: teacher123');
+    </script>
+</body>
+</html>
