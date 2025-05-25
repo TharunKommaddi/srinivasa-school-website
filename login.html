@@ -2,15 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Login - Srinivasa School Portal</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-	
     <style>
         :root {
             --primary-color: #2c5aa0;
@@ -34,18 +29,20 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
+            padding: 20px 0;
         }
 
         body::before {
             content: '';
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="transparent" width="1200" height="800"/><g fill="rgba(255,255,255,0.1)"><circle cx="200" cy="150" r="80"/><circle cx="800" cy="250" r="120"/><circle cx="400" cy="600" r="100"/><circle cx="1000" cy="500" r="90"/><circle cx="600" cy="100" r="60"/><circle cx="300" cy="400" r="70"/></g></svg>');
             animation: float 20s ease-in-out infinite;
+            z-index: -1;
         }
 
         @keyframes float {
@@ -64,6 +61,7 @@
             grid-template-columns: 1fr 1fr;
             position: relative;
             z-index: 2;
+            margin: 20px;
         }
 
         .login-left {
@@ -140,6 +138,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            overflow-y: auto;
         }
 
         .login-header {
@@ -264,7 +263,7 @@
             top: 50%;
             transform: translateY(-50%);
             color: #999;
-			margin-top: 16px; /* Adjust for label height */
+            margin-top: 16px;
             font-size: 1.1rem;
         }
 
@@ -306,18 +305,23 @@
         }
 
         .back-to-home {
-            position: absolute;
+            position: fixed;
             top: 20px;
             left: 20px;
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s ease;
-            z-index: 10;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .back-to-home:hover {
             color: white;
+            background: rgba(0, 0, 0, 0.3);
         }
 
         .demo-credentials {
@@ -347,39 +351,191 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                min-height: 100vh;
+                align-items: flex-start;
+                overflow-y: auto;
+            }
+
             .login-container {
                 grid-template-columns: 1fr;
-                margin: 20px;
-                max-width: 400px;
+                margin: 0;
+                max-width: 100%;
+                border-radius: 15px;
+                min-height: auto;
+                max-height: none;
             }
 
             .login-left {
-                padding: 40px 30px;
+                padding: 25px 20px;
+                min-height: auto;
+            }
+
+            .school-logo {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                margin-bottom: 15px;
             }
 
             .school-info h1 {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
+                margin-bottom: 8px;
             }
 
             .school-info p {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+
+            .school-features li {
+                padding: 6px 0;
+                font-size: 0.85rem;
             }
 
             .login-right {
-                padding: 30px;
+                padding: 25px 20px;
+                overflow-y: visible;
+            }
+
+            .login-header h2 {
+                font-size: 1.5rem;
+                margin-bottom: 8px;
+            }
+
+            .login-header p {
+                font-size: 0.9rem;
             }
 
             .user-type-selection {
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
+                margin-bottom: 25px;
             }
 
             .user-type-btn {
-                padding: 15px;
+                padding: 16px 12px;
+                border-radius: 12px;
             }
 
             .user-type-btn i {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
+                margin-bottom: 8px;
+            }
+
+            .user-type-btn .user-title {
+                font-size: 0.95rem;
+            }
+
+            .user-type-btn .user-desc {
+                font-size: 0.8rem;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                font-size: 0.9rem;
+                margin-bottom: 6px;
+            }
+
+            .form-group input {
+                padding: 14px 16px;
+                padding-left: 45px;
+                font-size: 16px; /* Prevents zoom on iOS */
+                border-radius: 10px;
+            }
+
+            .form-group .input-icon {
+                left: 15px;
+                font-size: 1rem;
+                margin-top: 14px;
+            }
+
+            .login-btn {
+                padding: 14px;
+                font-size: 1rem;
+                border-radius: 10px;
+                margin-bottom: 18px;
+                min-height: 48px;
+            }
+
+            .login-options {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+
+            .demo-credentials {
+                margin-top: 18px;
+                padding: 14px;
+                font-size: 0.85rem;
+            }
+
+            .demo-credentials h6 {
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+            }
+
+            .back-to-home {
+                top: 15px;
+                left: 15px;
+                font-size: 0.85rem;
+                padding: 6px 10px;
+            }
+        }
+
+        /* Extra Small Devices */
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            .login-container {
+                border-radius: 12px;
+            }
+
+            .login-left {
+                padding: 20px 15px;
+            }
+
+            .login-right {
+                padding: 20px 15px;
+            }
+
+            .school-logo {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .school-info h1 {
+                font-size: 1.2rem;
+            }
+
+            .login-header h2 {
+                font-size: 1.3rem;
+            }
+
+            .user-type-btn {
+                padding: 14px 10px;
+            }
+
+            .form-group input {
+                padding: 12px 14px;
+                padding-left: 42px;
+            }
+
+            .form-group .input-icon {
+                left: 14px;
+                margin-top: 12px;
+            }
+
+            .demo-credentials {
+                font-size: 0.8rem;
             }
         }
 
@@ -524,291 +680,80 @@
             margin-top: 5px;
         }
 
+        /* Mobile Dashboard */
+        @media (max-width: 768px) {
+            .dashboard-nav {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
 
-/* Enhanced Mobile Responsive */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
+            .dashboard-nav h2 {
+                font-size: 1.3rem;
+            }
 
-    .login-container {
-        grid-template-columns: 1fr;
-        margin: 10px;
-        max-width: 100%;
-        border-radius: 15px;
-    }
+            .dashboard-logout {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
 
-    .login-left {
-        padding: 30px 20px;
-        min-height: auto;
-    }
+            .quick-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin-bottom: 25px;
+            }
 
-    .school-logo {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-    }
+            .stat-box {
+                padding: 16px;
+            }
 
-    .school-info h1 {
-        font-size: 1.3rem;
-        margin-bottom: 8px;
-    }
+            .stat-number {
+                font-size: 1.6rem;
+            }
 
-    .school-info p {
-        font-size: 0.9rem;
-        margin-bottom: 20px;
-    }
+            .stat-label {
+                font-size: 0.8rem;
+            }
 
-    .school-features {
-        display: none; /* Hide features list on mobile to save space */
-    }
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
 
-    .login-right {
-        padding: 20px;
-    }
+            .dashboard-card {
+                padding: 20px;
+            }
 
-    .login-header h2 {
-        font-size: 1.5rem;
-        margin-bottom: 8px;
-    }
+            .dashboard-card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
 
-    .login-header p {
-        font-size: 0.85rem;
-    }
+            .dashboard-card h4 {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
 
-    .user-type-selection {
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 25px;
-    }
+            .dashboard-card p {
+                font-size: 0.85rem;
+            }
 
-    .user-type-btn {
-        padding: 15px 10px;
-        border-radius: 12px;
-    }
+            .alert h4 {
+                font-size: 1.1rem;
+            }
 
-    .user-type-btn i {
-        font-size: 1.3rem;
-        margin-bottom: 8px;
-    }
+            .alert p {
+                font-size: 0.9rem;
+            }
+        }
 
-    .user-type-btn .user-title {
-        font-size: 0.9rem;
-    }
-
-    .user-type-btn .user-desc {
-        font-size: 0.75rem;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .form-group label {
-        font-size: 0.9rem;
-        margin-bottom: 6px;
-    }
-
-    .form-group input {
-        padding: 12px 15px;
-        padding-left: 45px;
-        font-size: 0.9rem;
-        border-radius: 10px;
-    }
-
-    .form-group .input-icon {
-        left: 15px;
-        font-size: 1rem;
-        margin-top: 12px;
-    }
-
-    .login-btn {
-        padding: 12px;
-        font-size: 1rem;
-        border-radius: 10px;
-        margin-bottom: 15px;
-    }
-
-    .login-options {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-        font-size: 0.85rem;
-    }
-
-    .demo-credentials {
-        margin-top: 15px;
-        padding: 12px;
-        font-size: 0.8rem;
-    }
-
-    .demo-credentials h6 {
-        font-size: 0.85rem;
-        margin-bottom: 8px;
-    }
-
-    .back-to-home {
-        top: 15px;
-        left: 15px;
-        font-size: 0.8rem;
-    }
-
-    /* Dashboard Mobile Responsive */
-    .dashboard-nav {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-
-    .dashboard-nav h2 {
-        font-size: 1.2rem;
-    }
-
-    .dashboard-logout {
-        padding: 8px 16px;
-        font-size: 0.9rem;
-    }
-
-    .quick-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-
-    .stat-box {
-        padding: 15px;
-    }
-
-    .stat-number {
-        font-size: 1.5rem;
-    }
-
-    .stat-label {
-        font-size: 0.8rem;
-    }
-
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .dashboard-card {
-        padding: 20px;
-    }
-
-    .dashboard-card-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-        margin-bottom: 12px;
-    }
-
-    .dashboard-card h4 {
-        font-size: 1rem;
-        margin-bottom: 8px;
-    }
-
-    .dashboard-card p {
-        font-size: 0.85rem;
-    }
-
-    .alert h4 {
-        font-size: 1.1rem;
-    }
-
-    .alert p {
-        font-size: 0.9rem;
-    }
-}
-
-/* Extra Small Mobile Devices */
-@media (max-width: 480px) {
-    .login-container {
-        margin: 5px;
-        border-radius: 12px;
-    }
-
-    .login-left {
-        padding: 20px 15px;
-    }
-
-    .login-right {
-        padding: 15px;
-    }
-
-    .school-logo {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-    }
-
-    .school-info h1 {
-        font-size: 1.1rem;
-    }
-
-    .login-header h2 {
-        font-size: 1.3rem;
-    }
-
-    .user-type-btn {
-        padding: 12px 8px;
-    }
-
-    .form-group input {
-        padding: 10px 12px;
-        padding-left: 40px;
-    }
-
-    .form-group .input-icon {
-        left: 12px;
-        font-size: 0.9rem;
-        margin-top: 10px;
-    }
-
-    .demo-credentials {
-        font-size: 0.75rem;
-    }
-
-    .quick-stats {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Landscape Mobile Orientation */
-@media (max-width: 768px) and (orientation: landscape) {
-    .login-container {
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-
-    .login-left {
-        padding: 20px;
-    }
-
-    .school-features {
-        display: block;
-    }
-
-    .school-features li {
-        padding: 4px 0;
-        font-size: 0.8rem;
-    }
-}
-
-/* Touch-friendly improvements */
-@media (hover: none) and (pointer: coarse) {
-    .user-type-btn,
-    .login-btn,
-    .dashboard-card {
-        min-height: 44px; /* Minimum touch target size */
-    }
-
-    .form-group input {
-        font-size: 16px; /* Prevents zoom on iOS */
-    }
-}
-	    
+        @media (max-width: 480px) {
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1001,252 +946,256 @@
                             <i class="fas fa-clock"></i>
                         </div>
                         <h4>Time Table</h4>
-                        <p>Check your daily class schedule and timings</p>
-                    </div>
+			    <p>Check your daily class schedule and timings</p>
+                   </div>
 
-                    <div class="dashboard-card card-fees">
-                        <div class="dashboard-card-icon">
-                            <i class="fas fa-money-bill"></i>
-                        </div>
-                        <h4>Fee Status</h4>
-                        <p>View fee structure and payment history</p>
-                    </div>
+                   <div class="dashboard-card card-fees">
+                       <div class="dashboard-card-icon">
+                           <i class="fas fa-money-bill"></i>
+                       </div>
+                       <h4>Fee Status</h4>
+                       <p>View fee structure and payment history</p>
+                   </div>
 
-                    <div class="dashboard-card card-library">
-                        <div class="dashboard-card-icon">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <h4>Library</h4>
-                        <p>Browse books and check your borrowing history</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                   <div class="dashboard-card card-library">
+                       <div class="dashboard-card-icon">
+                           <i class="fas fa-book"></i>
+                       </div>
+                       <h4>Library</h4>
+                       <p>Browse books and check your borrowing history</p>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
 
-    <!-- Teacher Dashboard -->
-    <div class="dashboard" id="teacherDashboard">
-        <div class="dashboard-header">
-            <div class="container">
-                <div class="dashboard-nav">
-                    <h2><i class="fas fa-chalkboard-teacher me-2"></i>Teacher Dashboard</h2>
-                    <button class="dashboard-logout" onclick="logout()">
-                        <i class="fas fa-sign-out-alt me-2"></i>Logout
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="dashboard-content">
-            <div class="container">
-                <!-- Welcome Message -->
-                <div class="alert alert-primary mb-4">
-                    <h4>Welcome back, <span id="teacherName">Dr. Smith</span>! 📚</h4>
-                    <p>Manage your classes and track student progress.</p>
-                </div>
+   <!-- Teacher Dashboard -->
+   <div class="dashboard" id="teacherDashboard">
+       <div class="dashboard-header">
+           <div class="container">
+               <div class="dashboard-nav">
+                   <h2><i class="fas fa-chalkboard-teacher me-2"></i>Teacher Dashboard</h2>
+                   <button class="dashboard-logout" onclick="logout()">
+                       <i class="fas fa-sign-out-alt me-2"></i>Logout
+                   </button>
+               </div>
+           </div>
+       </div>
+       <div class="dashboard-content">
+           <div class="container">
+               <!-- Welcome Message -->
+               <div class="alert alert-primary mb-4">
+                   <h4>Welcome back, <span id="teacherName">Dr. Smith</span>! 📚</h4>
+                   <p>Manage your classes and track student progress.</p>
+               </div>
 
-                <!-- Quick Stats -->
-                <div class="quick-stats">
-                    <div class="stat-box">
-                        <span class="stat-number">156</span>
-                        <div class="stat-label">Total Students</div>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-number">8</span>
-                        <div class="stat-label">Classes Today</div>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-number">23</span>
-                        <div class="stat-label">Assignments to Grade</div>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-number">5</span>
-                        <div class="stat-label">Subjects</div>
-                    </div>
-                </div>
+               <!-- Quick Stats -->
+               <div class="quick-stats">
+                   <div class="stat-box">
+                       <span class="stat-number">156</span>
+                       <div class="stat-label">Total Students</div>
+                   </div>
+                   <div class="stat-box">
+                       <span class="stat-number">8</span>
+                       <div class="stat-label">Classes Today</div>
+                   </div>
+                   <div class="stat-box">
+                       <span class="stat-number">23</span>
+                       <div class="stat-label">Assignments to Grade</div>
+                   </div>
+                   <div class="stat-box">
+                       <span class="stat-number">5</span>
+                       <div class="stat-label">Subjects</div>
+                   </div>
+               </div>
 
-                <!-- Dashboard Cards -->
-                <div class="dashboard-grid">
-                    <div class="dashboard-card card-students">
-                        <div class="dashboard-card-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h4>My Students</h4>
-                        <p>View and manage student profiles and progress</p>
-                    </div>
+               <!-- Dashboard Cards -->
+               <div class="dashboard-grid">
+                   <div class="dashboard-card card-students">
+                       <div class="dashboard-card-icon">
+                           <i class="fas fa-users"></i>
+                       </div>
+                       <h4>My Students</h4>
+                       <p>View and manage student profiles and progress</p>
+                   </div>
 
-                    <div class="dashboard-card card-classes">
-                        <div class="dashboard-card-icon">
-                            <i class="fas fa-chalkboard"></i>
-                        </div>
-                        <h4>Class Schedule</h4>
-                        <p>View your teaching schedule and class timings</p>
-                    </div>
+                   <div class="dashboard-card card-classes">
+                       <div class="dashboard-card-icon">
+                           <i class="fas fa-chalkboard"></i>
+                       </div>
+                       <h4>Class Schedule</h4>
+                       <p>View your teaching schedule and class timings</p>
+                   </div>
 
-                    <div class="dashboard-card card-assignments">
-                        <div class="dashboard-card-icon">
-                            <i class="fas fa-clipboard-list"></i>
-                        </div>
-                        <h4>Assignments</h4>
-                        <p>Create assignments and grade student submissions</p>
-                    </div>
+                   <div class="dashboard-card card-assignments">
+                       <div class="dashboard-card-icon">
+                           <i class="fas fa-clipboard-list"></i>
+                       </div>
+                       <h4>Assignments</h4>
+                       <p>Create assignments and grade student submissions</p>
+                   </div>
 
-                    <div class="dashboard-card card-attendance">
-                        <div class="dashboard-card-icon">
-                            <i class="fas fa-user-check"></i>
-                        </div>
-                        <h4>Attendance</h4>
-                        <p>Mark student attendance and generate reports</p>
-                    </div>
+                   <div class="dashboard-card card-attendance">
+                       <div class="dashboard-card-icon">
+                           <i class="fas fa-user-check"></i>
+                       </div>
+                       <h4>Attendance</h4>
+                       <p>Mark student attendance and generate reports</p>
+                   </div>
 
-                    <div class="dashboard-card card-reports">
-                        <div class="dashboard-card-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <h4>Reports</h4>
-                        <p>Generate academic reports and analytics</p>
-                    </div>
+                   <div class="dashboard-card card-reports">
+                       <div class="dashboard-card-icon">
+                           <i class="fas fa-chart-bar"></i>
+                       </div>
+                       <h4>Reports</h4>
+                       <p>Generate academic reports and analytics</p>
+                   </div>
 
-                    <div class="dashboard-card card-materials">
-                        <div class="dashboard-card-icon">
-                            <i class="fas fa-folder-open"></i>
-                        </div>
-                        <h4>Course Materials</h4>
-                        <p>Upload and manage teaching resources</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                   <div class="dashboard-card card-materials">
+                       <div class="dashboard-card-icon">
+                           <i class="fas fa-folder-open"></i>
+                       </div>
+                       <h4>Course Materials</h4>
+                       <p>Upload and manage teaching resources</p>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
 
-    <script>
-        let currentUser = null;
-        
-        // Select user type (student or teacher)
-        function selectUserType(type) {
-            // Remove active class from all buttons
-            document.querySelectorAll('.user-type-btn').forEach(btn => 
-                btn.classList.remove('active'));
-            
-            // Add active class to selected button
-            event.target.closest('.user-type-btn').classList.add('active');
-            
-            // Hide all forms
-            document.querySelectorAll('.login-form').forEach(form => 
-                form.classList.remove('active'));
-            
-            // Show selected form
-            document.getElementById(type + 'Login').classList.add('active');
-        }
-        
-        // Login function
-        function loginUser(event, userType) {
-            event.preventDefault();
-            
-            let id, password;
-            
-            if (userType === 'student') {
-                id = document.getElementById('studentId').value;
-                password = document.getElementById('studentPassword').value;
-                
-                // Demo credentials for students
-                if (id === 'STU001' && password === 'student123') {
-                    currentUser = { type: 'student', id: id, name: 'John Doe' };
-                    showDashboard('student');
-                } else {
-                    alert('Invalid credentials! Use: STU001 / student123');
-                    return;
-                }
-            } else {
-                id = document.getElementById('teacherId').value;
-                password = document.getElementById('teacherPassword').value;
-                
-                // Demo credentials for teachers
-                if (id === 'TEA001' && password === 'teacher123') {
-                    currentUser = { type: 'teacher', id: id, name: 'Dr. Smith' };
-                    showDashboard('teacher');
-                } else {
-                    alert('Invalid credentials! Use: TEA001 / teacher123');
-                    return;
-                }
-            }
-        }
-        
-        // Show dashboard
-        function showDashboard(userType) {
-            // Hide login container
-            document.querySelector('.login-container').style.display = 'none';
-            document.querySelector('.back-to-home').style.display = 'none';
-            
-            // Show selected dashboard
-            document.getElementById(userType + 'Dashboard').classList.add('active');
-            
-            // Update welcome message
-            if (userType === 'student') {
-                document.getElementById('studentName').textContent = currentUser.name;
-            } else {
-                document.getElementById('teacherName').textContent = currentUser.name;
-            }
-        }
-        
-        // Logout function
-        function logout() {
-            currentUser = null;
-            
-            // Hide all dashboards
-            document.querySelectorAll('.dashboard').forEach(dashboard => 
-                dashboard.classList.remove('active'));
-            
-            // Show login container
-            document.querySelector('.login-container').style.display = 'grid';
-            document.querySelector('.back-to-home').style.display = 'block';
-            
-            // Clear form fields
-            document.querySelectorAll('input[type="text"], input[type="password"]')
-                .forEach(input => input.value = '');
-            
-            // Reset user type selection
-            document.querySelectorAll('.user-type-btn').forEach(btn => 
-                btn.classList.remove('active'));
-            document.querySelector('.user-type-btn').classList.add('active');
-            
-            document.querySelectorAll('.login-form').forEach(form => 
-                form.classList.remove('active'));
-            document.getElementById('studentLogin').classList.add('active');
-        }
-        
-        // Add some interactive features for dashboard cards
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add click handlers to dashboard cards (placeholder functionality)
-            document.querySelectorAll('.dashboard-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const cardTitle = this.querySelector('h4').textContent;
-                    alert(`${cardTitle} feature will be implemented soon!`);
-                });
-            });
-        });
-        
-        // Add keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            // Press 'S' to switch to Student login
-            if (e.key.toLowerCase() === 's' && !e.target.matches('input')) {
-                selectUserType('student');
-            }
-            
-            // Press 'T' to switch to Teacher login
-            if (e.key.toLowerCase() === 't' && !e.target.matches('input')) {
-                selectUserType('teacher');
-            }
-            
-            // Press Escape to logout if in dashboard
-            if (e.key === 'Escape' && currentUser) {
-                logout();
-            }
-        });
-        
-        console.log('Srinivasa School Login Portal loaded successfully!');
-        console.log('Demo Credentials:');
-        console.log('Student - ID: STU001, Password: student123');
-        console.log('Teacher - ID: TEA001, Password: teacher123');
-    </script>
+   <script>
+       let currentUser = null;
+       
+       // Select user type (student or teacher)
+       function selectUserType(type) {
+           // Remove active class from all buttons
+           document.querySelectorAll('.user-type-btn').forEach(btn => 
+               btn.classList.remove('active'));
+           
+           // Add active class to selected button
+           event.target.closest('.user-type-btn').classList.add('active');
+           
+           // Hide all forms
+           document.querySelectorAll('.login-form').forEach(form => 
+               form.classList.remove('active'));
+           
+           // Show selected form
+           document.getElementById(type + 'Login').classList.add('active');
+       }
+       
+       // Login function
+       function loginUser(event, userType) {
+           event.preventDefault();
+           
+           let id, password;
+           
+           if (userType === 'student') {
+               id = document.getElementById('studentId').value;
+               password = document.getElementById('studentPassword').value;
+               
+               // Demo credentials for students
+               if (id === 'STU001' && password === 'student123') {
+                   currentUser = { type: 'student', id: id, name: 'John Doe' };
+                   showDashboard('student');
+               } else {
+                   alert('Invalid credentials! Use: STU001 / student123');
+                   return;
+               }
+           } else {
+               id = document.getElementById('teacherId').value;
+               password = document.getElementById('teacherPassword').value;
+               
+               // Demo credentials for teachers
+               if (id === 'TEA001' && password === 'teacher123') {
+                   currentUser = { type: 'teacher', id: id, name: 'Dr. Smith' };
+                   showDashboard('teacher');
+               } else {
+                   alert('Invalid credentials! Use: TEA001 / teacher123');
+                   return;
+               }
+           }
+       }
+       
+       // Show dashboard
+       function showDashboard(userType) {
+           // Hide login container
+           document.querySelector('.login-container').style.display = 'none';
+           document.querySelector('.back-to-home').style.display = 'none';
+           
+           // Show selected dashboard
+           document.getElementById(userType + 'Dashboard').classList.add('active');
+           
+           // Update welcome message
+           if (userType === 'student') {
+               document.getElementById('studentName').textContent = currentUser.name;
+           } else {
+               document.getElementById('teacherName').textContent = currentUser.name;
+           }
+       }
+       
+       // Logout function
+       function logout() {
+           currentUser = null;
+           
+           // Hide all dashboards
+           document.querySelectorAll('.dashboard').forEach(dashboard => 
+               dashboard.classList.remove('active'));
+           
+           // Show login container
+           document.querySelector('.login-container').style.display = 'grid';
+           document.querySelector('.back-to-home').style.display = 'block';
+           
+           // Clear form fields
+           document.querySelectorAll('input[type="text"], input[type="password"]')
+               .forEach(input => input.value = '');
+           
+           // Reset user type selection
+           document.querySelectorAll('.user-type-btn').forEach(btn => 
+               btn.classList.remove('active'));
+           document.querySelector('.user-type-btn').classList.add('active');
+           
+           document.querySelectorAll('.login-form').forEach(form => 
+               form.classList.remove('active'));
+           document.getElementById('studentLogin').classList.add('active');
+       }
+       
+       // Add some interactive features for dashboard cards
+       document.addEventListener('DOMContentLoaded', function() {
+           // Add click handlers to dashboard cards (placeholder functionality)
+           document.querySelectorAll('.dashboard-card').forEach(card => {
+               card.addEventListener('click', function() {
+                   const cardTitle = this.querySelector('h4').textContent;
+                   alert(`${cardTitle} feature will be implemented soon!`);
+               });
+           });
+       });
+       
+       // Add keyboard shortcuts
+       document.addEventListener('keydown', function(e) {
+           // Press 'S' to switch to Student login
+           if (e.key.toLowerCase() === 's' && !e.target.matches('input')) {
+               selectUserType('student');
+           }
+           
+           // Press 'T' to switch to Teacher login
+           if (e.key.toLowerCase() === 't' && !e.target.matches('input')) {
+               selectUserType('teacher');
+           }
+           
+           // Press Escape to logout if in dashboard
+           if (e.key === 'Escape' && currentUser) {
+               logout();
+           }
+       });
+       
+       console.log('Srinivasa School Login Portal loaded successfully!');
+       console.log('Demo Credentials:');
+       console.log('Student - ID: STU001, Password: student123');
+       console.log('Teacher - ID: TEA001, Password: teacher123');
+   </script>
 </body>
 </html>
+			    
+
+
+			    
