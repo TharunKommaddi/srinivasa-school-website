@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Srinivasa School - Excellence in Education</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -26,6 +26,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
+            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -33,6 +34,7 @@
             background: linear-gradient(135deg, var(--primary-color), #1e3d72);
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             padding: 1rem 0;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
@@ -53,6 +55,20 @@
             transform: translateY(-2px);
         }
 
+        .navbar-toggler {
+            border: 2px solid white;
+            border-radius: 8px;
+            padding: 6px 12px;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(255,255,255,0.25);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
         /* Login Button in Navbar */
         .btn-login {
             background: var(--secondary-color);
@@ -65,6 +81,7 @@
             text-decoration: none;
             display: inline-block;
             margin-left: 15px;
+            white-space: nowrap;
         }
 
         .btn-login:hover {
@@ -88,6 +105,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            padding: 80px 0 40px;
         }
 
         .hero::before {
@@ -103,6 +121,9 @@
         .hero-content {
             position: relative;
             z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .hero h1 {
@@ -132,6 +153,7 @@
             text-decoration: none;
             display: inline-block;
             margin: 10px;
+            white-space: nowrap;
         }
 
         .btn-hero:hover {
@@ -144,6 +166,7 @@
         /* Section Styles */
         .section {
             padding: 80px 0;
+            position: relative;
         }
 
         .section-title {
@@ -369,24 +392,28 @@
             transform: translateY(-3px);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section {
-                padding: 50px 0;
-            }
+        /* Statistics */
+        .stats {
+            background: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+        }
 
-            .btn-login {
-                margin-left: 0;
-                margin-top: 10px;
-            }
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            margin-top: 10px;
         }
 
         /* Live Announcements Icon */
@@ -582,26 +609,6 @@
             font-size: 0.8rem;
             color: #999;
             margin-top: 5px;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .announcements-icon {
-                top: 15px;
-                right: 15px;
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-            }
-
-            .announcements-content {
-                width: 95%;
-                margin: 20px;
-            }
-
-            .announcement-item {
-                padding: 15px;
-            }
         }
 
         /* Gallery Section */
@@ -826,20 +833,6 @@
             visibility: visible;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                font-size: 22px;
-                bottom: 80px;
-                right: 15px;
-            }
-            
-            .whatsapp-float::before {
-                display: none;
-            }
-        }
         html {
             scroll-behavior: smooth;
         }
@@ -848,6 +841,7 @@
         section {
             scroll-margin-top: 80px;
         }
+
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -859,77 +853,568 @@
             transform: translateY(0);
         }
 
-        /* Statistics */
-        .stats {
-            background: var(--primary-color);
-            color: white;
-            padding: 60px 0;
-        }
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
 
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-        }
+            .navbar {
+                padding: 0.75rem 0;
+            }
 
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--secondary-color);
-            display: block;
-        }
+            .navbar-brand {
+                font-size: 1.4rem;
+            }
 
-        .stat-label {
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
-    </style>
+            .navbar-nav .nav-link {
+                margin: 5px 0;
+                padding: 8px 0;
+                font-size: 1rem;
+            }
+
+            .btn-login {
+                margin-left: 0;
+                margin-top: 10px;
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Move announcements icon to bottom left on mobile */
+            .announcements-icon {
+                top: auto;
+                bottom: 160px;
+                left: 20px;
+                right: auto;
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+
+            .hero {
+                min-height: 100vh;
+                padding: 100px 0 40px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+                line-height: 1.2;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+                padding: 0 10px;
+            }
+
+            .btn-hero {
+                padding: 12px 25px;
+                font-size: 0.95rem;
+                margin: 8px 5px;
+                display: block;
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+                margin-bottom: 10px;
+            }
+
+            .section-title p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+
+
+
+
+.stats {
+               padding: 40px 0;
+           }
+
+           .stat-item {
+               padding: 15px 10px;
+               margin-bottom: 20px;
+           }
+
+           .stat-number {
+               font-size: 2.2rem;
+           }
+
+           .stat-label {
+               font-size: 1rem;
+           }
+
+           .about-card {
+               padding: 25px 20px;
+               margin-bottom: 20px;
+           }
+
+           .about-icon {
+               width: 60px;
+               height: 60px;
+               font-size: 1.5rem;
+               margin-bottom: 15px;
+           }
+
+           .program-header {
+               padding: 20px 15px;
+           }
+
+           .program-header h3 {
+               font-size: 1.3rem;
+           }
+
+           .program-body {
+               padding: 20px 15px;
+           }
+
+           .program-body li {
+               font-size: 0.9rem;
+               padding: 6px 0;
+           }
+
+           .faculty-img {
+               width: 100px;
+               height: 100px;
+               font-size: 2rem;
+               margin: 20px auto 15px;
+           }
+
+           .faculty-card .p-4 {
+               padding: 1.5rem !important;
+           }
+
+           .faculty-card h4 {
+               font-size: 1.1rem;
+           }
+
+           .faculty-card p {
+               font-size: 0.9rem;
+           }
+
+           .gallery-grid {
+               grid-template-columns: 1fr;
+               gap: 15px;
+               margin-top: 30px;
+           }
+
+           .gallery-image {
+               height: 200px;
+               font-size: 2.5rem;
+           }
+
+           .gallery-categories {
+               margin-bottom: 25px;
+           }
+
+           .gallery-filter {
+               padding: 8px 16px;
+               font-size: 0.9rem;
+               margin: 5px;
+           }
+
+           .facility-item {
+               padding: 20px 15px;
+               margin-bottom: 15px;
+               text-align: center;
+           }
+
+           .facility-icon {
+               font-size: 2.5rem;
+               margin-right: 0;
+               margin-bottom: 15px;
+               display: block;
+           }
+
+           .contact-form {
+               padding: 25px 20px;
+           }
+
+           .contact-form h4 {
+               font-size: 1.2rem;
+               margin-bottom: 20px;
+           }
+
+           .form-control {
+               padding: 12px 15px;
+               font-size: 16px; /* Prevents zoom on iOS */
+               border-radius: 8px;
+           }
+
+           .btn-submit {
+               padding: 12px 30px;
+               font-size: 1rem;
+               width: 100%;
+           }
+
+           .footer {
+               padding: 30px 0 15px;
+               text-align: center;
+           }
+
+           .footer .row > div {
+               margin-bottom: 25px;
+           }
+
+           .footer h5 {
+               font-size: 1.1rem;
+               margin-bottom: 15px;
+           }
+
+           .footer ul li {
+               margin-bottom: 8px;
+           }
+
+           .footer a {
+               font-size: 0.9rem;
+           }
+
+           .social-icons {
+               margin-top: 15px;
+           }
+
+           .social-icons a {
+               width: 35px;
+               height: 35px;
+               line-height: 35px;
+               font-size: 16px;
+               margin: 0 5px 10px;
+           }
+
+           .whatsapp-float {
+               width: 50px;
+               height: 50px;
+               font-size: 20px;
+               bottom: 80px;
+               right: 15px;
+           }
+
+           .whatsapp-float::before {
+               display: none;
+           }
+
+           .whatsapp-float::after {
+               display: none;
+           }
+
+           .announcements-content {
+               width: 95%;
+               margin: 10px;
+               max-height: 85vh;
+           }
+
+           .announcements-header {
+               padding: 15px;
+           }
+
+           .announcements-header h3 {
+               font-size: 1.1rem;
+           }
+
+           .announcement-item {
+               padding: 15px;
+           }
+
+           .announcement-icon {
+               width: 35px;
+               height: 35px;
+               font-size: 14px;
+               margin-right: 12px;
+           }
+
+           .announcement-text h4 {
+               font-size: 0.95rem;
+           }
+
+           .announcement-text p {
+               font-size: 0.85rem;
+           }
+
+           .announcement-date {
+               font-size: 0.75rem;
+           }
+       }
+
+       /* Extra Small Devices */
+       @media (max-width: 480px) {
+           .navbar-brand {
+               font-size: 1.2rem;
+           }
+
+           .hero h1 {
+               font-size: 1.8rem;
+           }
+
+           .hero p {
+               font-size: 0.95rem;
+           }
+
+           .btn-hero {
+               padding: 10px 20px;
+               font-size: 0.9rem;
+           }
+
+           .section {
+               padding: 40px 0;
+           }
+
+           .section-title h2 {
+               font-size: 1.5rem;
+           }
+
+           .section-title p {
+               font-size: 0.9rem;
+           }
+
+           .stat-number {
+               font-size: 1.8rem;
+           }
+
+           .stat-label {
+               font-size: 0.9rem;
+           }
+
+           .about-card,
+           .contact-form {
+               padding: 20px 15px;
+           }
+
+           .about-icon {
+               width: 50px;
+               height: 50px;
+               font-size: 1.2rem;
+           }
+
+           .program-header {
+               padding: 15px 10px;
+           }
+
+           .program-body {
+               padding: 15px 10px;
+           }
+
+           .faculty-img {
+               width: 80px;
+               height: 80px;
+               font-size: 1.5rem;
+           }
+
+           .gallery-image {
+               height: 180px;
+               font-size: 2rem;
+           }
+
+           .facility-item {
+               padding: 15px 10px;
+           }
+
+           .facility-icon {
+               font-size: 2rem;
+           }
+
+           .announcements-icon {
+               width: 40px;
+               height: 40px;
+               font-size: 16px;
+               bottom: 140px;
+           }
+
+           .whatsapp-float {
+               width: 45px;
+               height: 45px;
+               font-size: 18px;
+               bottom: 70px;
+           }
+       }
+
+       /* Landscape Tablets */
+       @media (min-width: 768px) and (max-width: 1024px) {
+           .hero h1 {
+               font-size: 3rem;
+           }
+
+           .hero p {
+               font-size: 1.2rem;
+           }
+
+           .btn-hero {
+               padding: 12px 30px;
+               font-size: 1rem;
+           }
+
+           .section {
+               padding: 60px 0;
+           }
+
+           .section-title h2 {
+               font-size: 2.2rem;
+           }
+
+           .about-card {
+               padding: 30px 25px;
+           }
+
+           .gallery-grid {
+               grid-template-columns: repeat(2, 1fr);
+               gap: 18px;
+           }
+
+           .gallery-image {
+               height: 220px;
+           }
+       }
+
+       /* Large Screens */
+       @media (min-width: 1200px) {
+           .container {
+               max-width: 1140px;
+           }
+
+           .hero h1 {
+               font-size: 4.5rem;
+           }
+
+           .hero p {
+               font-size: 1.4rem;
+           }
+
+           .section-title h2 {
+               font-size: 2.8rem;
+           }
+
+           .gallery-grid {
+               grid-template-columns: repeat(4, 1fr);
+           }
+       }
+
+       /* Print Styles */
+       @media print {
+           .navbar,
+           .announcements-icon,
+           .whatsapp-float,
+           #backToTop {
+               display: none !important;
+           }
+
+           .hero {
+               background: none !important;
+               color: #333 !important;
+               min-height: auto;
+               padding: 20px 0;
+           }
+
+           .section {
+               padding: 20px 0;
+               page-break-inside: avoid;
+           }
+
+           .about-card,
+           .program-card,
+           .faculty-card {
+               box-shadow: none;
+               border: 1px solid #ddd;
+           }
+       }
+
+       /* High Contrast Mode */
+       @media (prefers-contrast: high) {
+           :root {
+               --primary-color: #000066;
+               --secondary-color: #ffcc00;
+               --dark-color: #000000;
+           }
+
+           .hero {
+               background: linear-gradient(135deg, #000066, #000033) !important;
+           }
+
+           .btn-hero,
+           .btn-login {
+               border: 2px solid currentColor;
+           }
+       }
+
+       /* Reduced Motion */
+       @media (prefers-reduced-motion: reduce) {
+           *,
+           *::before,
+           *::after {
+               animation-duration: 0.01ms !important;
+               animation-iteration-count: 1 !important;
+               transition-duration: 0.01ms !important;
+           }
+
+           .announcements-icon {
+               animation: none;
+           }
+
+           .whatsapp-float {
+               animation: none;
+           }
+
+           .notification-badge {
+               animation: none;
+           }
+       }
+   </style>
 </head>
 <body>
-    <!-- Live Announcements Icon -->
-    <div class="announcements-icon" onclick="openAnnouncementsModal()" title="View Latest Updates">
-        <i class="fas fa-bell"></i>
-        <div class="notification-badge">5</div>
-    </div>
+   <!-- Live Announcements Icon -->
+   <div class="announcements-icon" onclick="openAnnouncementsModal()" title="View Latest Updates">
+       <i class="fas fa-bell"></i>
+       <div class="notification-badge">5</div>
+   </div>
 
-    <!-- Announcements Modal -->
-    <div class="announcements-modal" id="announcementsModal" onclick="closeAnnouncementsModal(event)">
-        <div class="announcements-content" onclick="event.stopPropagation()">
-            <div class="announcements-header">
-                <h3><i class="fas fa-bullhorn me-2"></i>Latest Updates</h3>
-                <button class="close-modal" onclick="closeAnnouncementsModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="announcements-body">
-                <div class="announcement-item">
-                    <div class="announcement-icon results">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="announcement-text">
-                        <h4>10th Class Results Released</h4>
-                        <p>Check your marks now! Results are available on the student portal.</p>
-                        <div class="announcement-date">March 10, 2025</div>
-                    </div>
-                </div>
-                
-                <div class="announcement-item">
-                    <div class="announcement-icon admissions">
-                        <i class="fas fa-calendar"></i>
-                    </div>
-                    <div class="announcement-text">
-                        <h4>New Admission Forms Available</h4>
-                        <p>Applications for 2025-26 Academic Year are now open. Apply before the deadline.</p>
-                        <div class="announcement-date">March 8, 2025</div>
-                    </div>
-                </div>
-                
-                <div class="announcement-item">
-                    <div class="announcement-icon achievement">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="announcement-text">
-					
-					<h4>State Level Science Fair Winners</h4>
+   <!-- Announcements Modal -->
+   <div class="announcements-modal" id="announcementsModal" onclick="closeAnnouncementsModal(event)">
+       <div class="announcements-content" onclick="event.stopPropagation()">
+           <div class="announcements-header">
+               <h3><i class="fas fa-bullhorn me-2"></i>Latest Updates</h3>
+               <button class="close-modal" onclick="closeAnnouncementsModal()">
+                   <i class="fas fa-times"></i>
+               </button>
+           </div>
+           <div class="announcements-body">
+               <div class="announcement-item">
+                   <div class="announcement-icon results">
+                       <i class="fas fa-star"></i>
+                   </div>
+                   <div class="announcement-text">
+                       <h4>10th Class Results Released</h4>
+                       <p>Check your marks now! Results are available on the student portal.</p>
+                       <div class="announcement-date">March 10, 2025</div>
+                   </div>
+               </div>
+               
+               <div class="announcement-item">
+                   <div class="announcement-icon admissions">
+                       <i class="fas fa-calendar"></i>
+                   </div>
+                   <div class="announcement-text">
+                       <h4>New Admission Forms Available</h4>
+                       <p>Applications for 2025-26 Academic Year are now open. Apply before the deadline.</p>
+                       <div class="announcement-date">March 8, 2025</div>
+                   </div>
+               </div>
+               
+               <div class="announcement-item">
+                   <div class="announcement-icon achievement">
+                       <i class="fas fa-trophy"></i>
+                   </div>
+                   <div class="announcement-text">
+                       <h4>State Level Science Fair Winners</h4>
                        <p>Congratulations to our students for winning first place in the state competition!</p>
                        <div class="announcement-date">March 5, 2025</div>
                    </div>
@@ -966,7 +1451,7 @@
            <a class="navbar-brand" href="#home">
                <i class="fas fa-graduation-cap me-2"></i>Srinivasa School
            </a>
-           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
            </button>
            <div class="collapse navbar-collapse" id="navbarNav">
@@ -1380,7 +1865,9 @@
                    </div>
                    <div class="facility-item animate-on-scroll">
                        <i class="fas fa-music facility-icon"></i>
-                       <strong>Arts Center</strong>
+
+
+<strong>Arts Center</strong>
                        <p>Music rooms, art studios, and performance spaces for creative expression</p>
                    </div>
                    <div class="facility-item animate-on-scroll">
@@ -1596,12 +2083,7 @@
        
        // Function to navigate to login page
        function goToLogin() {
-           // For demo - shows alert with credentials
-           //alert('🔐 Login Portal\n\nIn a real implementation, this would redirect to login.html\n\nDemo Credentials:\n👨‍🎓 Student: STU001 / student123\n👨‍🏫 Teacher: TEA001 / teacher123');
-           
-           // For actual implementation, uncomment the line below:
-            window.location.href = 'login.html';  // Same tab
-           // NOT: window.open('login.html');     // New tab
+           window.location.href = 'login.html';
        }
        
        // Announcements Modal Functions
@@ -1659,10 +2141,7 @@
            }
        `;
        document.head.appendChild(style);
-   </script>
 
-   <!-- Custom JavaScript -->
-   <script>
        // Smooth scrolling for navigation links
        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
            anchor.addEventListener('click', function (e) {
@@ -1682,8 +2161,10 @@
            const navbar = document.querySelector('.navbar');
            if (window.scrollY > 50) {
                navbar.style.background = 'linear-gradient(135deg, rgba(44, 90, 160, 0.95), rgba(30, 61, 114, 0.95))';
+               navbar.style.backdropFilter = 'blur(10px)';
            } else {
                navbar.style.background = 'linear-gradient(135deg, var(--primary-color), #1e3d72)';
+               navbar.style.backdropFilter = 'none';
            }
        });
 
@@ -1732,7 +2213,9 @@
                }
            });
        });
-       observer.observe(statsSection);
+       if (statsSection) {
+           observer.observe(statsSection);
+       }
 
        // Back to top button
        const backToTopButton = document.getElementById('backToTop');
@@ -1761,22 +2244,13 @@
            submitBtn.textContent = 'Sending...';
            submitBtn.disabled = true;
            
-           emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-               from_name: this.contact_name.value,
-               from_email: this.contact_email.value,
-               subject: this.subject.value,
-               message: this.message.value,
-               to_email: "tharunkommaddi@gmail.com"
-           }).then(function() {
+           // For demo purposes, show success message directly
+           setTimeout(() => {
                alert('Thank you for your message! We will get back to you soon.');
                document.getElementById('contactForm').reset();
-           }).catch(function(error) {
-               alert('Sorry, there was an error sending your message. Please try again.');
-               console.error('Email send failed:', error);
-           }).finally(function() {
                submitBtn.textContent = originalText;
                submitBtn.disabled = false;
-           });
+           }, 1000);
        });
 
        document.getElementById('admissionForm').addEventListener('submit', function(e) {
@@ -1787,25 +2261,13 @@
            submitBtn.textContent = 'Submitting...';
            submitBtn.disabled = true;
            
-           emailjs.send("YOUR_SERVICE_ID", "YOUR_ADMISSION_TEMPLATE_ID", {
-               student_name: this.student_name.value,
-               parent_name: this.parent_name.value,
-               email: this.email.value,
-               phone: this.phone.value,
-               grade: this.grade.value,
-               preferred_date: this.preferred_date.value,
-               additional_info: this.additional_info.value,
-               to_email: "tharunkommaddi@gmail.com"
-           }).then(function() {
+           // For demo purposes, show success message directly
+           setTimeout(() => {
                alert('Thank you for your admission inquiry! Our admissions team will contact you within 24 hours.');
                document.getElementById('admissionForm').reset();
-           }).catch(function(error) {
-               alert('Sorry, there was an error submitting your application. Please try again.');
-               console.error('Email send failed:', error);
-           }).finally(function() {
                submitBtn.textContent = originalText;
                submitBtn.disabled = false;
-           });
+           }, 1000);
        });
 
        // Mobile menu close on link click
@@ -1851,136 +2313,6 @@
                this.style.transform = 'translateY(0) scale(1)';
            });
        });
-/*
-       // Search functionality
-       function addSearch() {
-           const searchHTML = `
-               <div class="search-overlay" id="searchOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; display: flex; align-items: center; justify-content: center;">
-                   <div class="search-container" style="background: white; padding: 40px; border-radius: 15px; width: 90%; max-width: 500px;">
-                       <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                           <input type="text" id="searchInput" placeholder="Search courses, faculty, facilities..." style="flex: 1; padding: 15px; border: 2px solid #eee; border-radius: 10px; font-size: 1rem;">
-                           <button onclick="closeSearch()" style="background: var(--accent-color); color: white; border: none; padding: 15px 20px; margin-left: 10px; border-radius: 10px; cursor: pointer; font-size: 1.2rem;">&times;</button>
-                       </div>
-                       <div id="searchResults" style="max-height: 300px; overflow-y: auto;"></div>
-                   </div>
-               </div>
-           `;
-           document.body.insertAdjacentHTML('beforeend', searchHTML);
-       }
-
-       function openSearch() {
-           document.getElementById('searchOverlay').style.display = 'flex';
-           document.getElementById('searchInput').focus();
-       }
-
-       function closeSearch() {
-           document.getElementById('searchOverlay').style.display = 'none';
-           document.getElementById('searchInput').value = '';
-           document.getElementById('searchResults').innerHTML = '';
-       }
-
-       // Initialize search
-       addSearch();
-*/
-
-/*
-       // Add keyboard shortcuts
-       document.addEventListener('keydown', function(e) {
-           // Ctrl + K to open search
-           if (e.ctrlKey && e.key === 'k') {
-               e.preventDefault();
-               openSearch();
-           }
-           
-           // Escape to close search
-           if (e.key === 'Escape') {
-               closeSearch();
-           }
-       });
-*/
-
-       // Newsletter subscription modal
-       function addNewsletterModal() {
-           const modalHTML = `
-               <div class="modal fade" id="newsletterModal" tabindex="-1">
-                   <div class="modal-dialog">
-                       <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
-                           <div class="modal-header" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; border: none;">
-                               <h5 class="modal-title"><i class="fas fa-envelope me-2"></i>Stay Updated</h5>
-                               <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                           </div>
-                           <div class="modal-body" style="padding: 30px;">
-                               <p style="margin-bottom: 20px; color: #666;">Subscribe to our newsletter for the latest updates, events, and news from Srinivasa School.</p>
-                               <form id="newsletterForm">
-                                   <div class="mb-3">
-                                       <input type="email" class="form-control" placeholder="Enter your email address" required style="padding: 15px; border-radius: 10px; border: 2px solid #eee;">
-                                   </div>
-                                   <div class="mb-3">
-                                       <select class="form-control" required style="padding: 15px; border-radius: 10px; border: 2px solid #eee;">
-                                           <option value="">I am a...</option>
-                                           <option value="parent">Parent</option>
-                                           <option value="student">Student</option>
-                                           <option value="teacher">Teacher</option>
-                                           <option value="other">Community Member</option>
-                                       </select>
-                                   </div>
-                                   <button type="submit" class="btn-submit w-100">Subscribe Now</button>
-                               </form>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           `;
-           document.body.insertAdjacentHTML('beforeend', modalHTML);
-       }
-
-       // Initialize newsletter modal
-       addNewsletterModal();
-
-       // Newsletter form submission
-       document.addEventListener('DOMContentLoaded', function() {
-           const newsletterForm = document.getElementById('newsletterForm');
-           if (newsletterForm) {
-               newsletterForm.addEventListener('submit', function(e) {
-                   e.preventDefault();
-                   alert('Thank you for subscribing! You will receive our latest updates soon.');
-                   const modal = bootstrap.Modal.getInstance(document.getElementById('newsletterModal'));
-                   modal.hide();
-                   this.reset();
-               });
-           }
-       });
-
-       // Add floating elements animation
-       function createFloatingElements() {
-           const floatingHTML = `
-               <div class="floating-elements" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden;">
-                   <div class="floating-icon" style="position: absolute; top: 20%; left: 10%; animation: float 6s ease-in-out infinite; color: rgba(44, 90, 160, 0.1); font-size: 3rem;">
-                       <i class="fas fa-graduation-cap"></i>
-                   </div>
-                   <div class="floating-icon" style="position: absolute; top: 60%; right: 15%; animation: float 8s ease-in-out infinite reverse; color: rgba(248, 181, 0, 0.1); font-size: 2.5rem;">
-                       <i class="fas fa-book"></i>
-                   </div>
-                   <div class="floating-icon" style="position: absolute; bottom: 30%; left: 20%; animation: float 7s ease-in-out infinite; color: rgba(44, 90, 160, 0.1); font-size: 2rem;">
-                       <i class="fas fa-atom"></i>
-                   </div>
-               </div>
-           `;
-           document.body.insertAdjacentHTML('beforeend', floatingHTML);
-       }
-
-       // Add float animation to CSS
-       const floatStyle = document.createElement('style');
-       floatStyle.textContent = `
-           @keyframes float {
-               0%, 100% { transform: translateY(0px); }
-               50% { transform: translateY(-20px); }
-           }
-       `;
-       document.head.appendChild(floatStyle);
-
-       // Add floating elements
-       createFloatingElements();
 
        // Performance optimization - throttle scroll events
        function throttle(func, limit) {
@@ -2001,14 +2333,18 @@
            animateOnScroll();
        }, 100));
 
+       // Add loading animation
+       window.addEventListener('load', function() {
+           document.body.classList.add('loaded');
+       });
+
        console.log('🎓 Srinivasa School website loaded successfully!');
        console.log('🔐 Login credentials for demo:');
        console.log('👨‍🎓 Student: STU001 / student123');
        console.log('👨‍🏫 Teacher: TEA001 / teacher123');
-       // console.log('⌨️ Press Ctrl+K to open search');
        console.log('✨ All interactive features are now active!');
    </script>
 </body>
 </html>
-					
-					
+			   
+	    
