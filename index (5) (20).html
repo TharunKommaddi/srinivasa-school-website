@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srinivasa School - Excellence in Education</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: rgba(37, 99, 235, 0.1);
+            --secondary: #f59e0b;
+            --accent: #ef4444;
+            --success: #10b981;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --text-tertiary: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --primary-light: rgba(59, 130, 246, 0.15);
+            --secondary: #fbbf24;
+            --accent: #f87171;
+            --success: #34d399;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #94a3b8;
+            --border: #334155;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--bg-primary);
+            box-shadow: var(--shadow);
+            padding: 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.625rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            font-size: 1.125rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: translateY(-2px);
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0.125rem;
+            margin: 0;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0.875rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: var(--bg-secondary);
+        }
+
+        .btn-login {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.125rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-login:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            color: white;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-primary);
+            z-index: 999;
+            transition: right 0.4s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-content {
+            padding: 70px 0 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.875rem 1.25rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav-link:hover {
+            background: var(--bg-secondary);
+            color: var(--primary);
+            padding-left: 1.75rem;
+        }
+
+        /* Announcements Icon */
+        .announcements-icon {
+            position: fixed;
+            bottom: 4.5rem;
+            left: 1.25rem;
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .announcements-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            background: var(--secondary);
+            color: #0f172a;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 0.65rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.25rem;
+            right: 1.25rem;
+            width: 48px;
+            height: 48px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            background: #128c7e;
+            transform: scale(1.15);
+            color: white;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            position: fixed;
+            bottom: 1.25rem;
+            left: 1.25rem;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(180deg) scale(1.1);
+        }
+
+        .theme-toggle .icon-light { display: block; }
+        .theme-toggle .icon-dark { display: none; }
+        [data-theme="dark"] .theme-toggle .icon-light { display: none; }
+        [data-theme="dark"] .theme-toggle .icon-dark { display: block; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
+            color: white;
+            padding: 85px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.08) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 0.875rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            max-width: 620px;
+            animation: fadeInUp 0.6s ease 0.1s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease 0.2s backwards;
+        }
+
+        .btn-hero {
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-hero.primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-hero.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-hero.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-hero.secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--bg-primary);
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1.25rem;
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            background: var(--primary-light);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Section */
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section-alt {
+            background: var(--bg-secondary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.25rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.625rem;
+            color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .card {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 1.75rem;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.4s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.625rem;
+            color: var(--text-primary);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Program Cards */
+        .program-card {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .program-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .program-header h3 {
+            font-size: 1.375rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .program-header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .program-body {
+            padding: 1.5rem;
+        }
+
+        .program-body ul {
+            list-style: none;
+        }
+
+        .program-body li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .program-body li:hover {
+            color: var(--primary);
+            padding-left: 0.625rem;
+        }
+
+        .program-body li:last-child {
+            border-bottom: none;
+        }
+
+        .program-body li i {
+            color: var(--success);
+            font-size: 1rem;
+        }
+
+        /* Faculty Cards */
+        .faculty-card {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 1.75rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .faculty-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faculty-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.25rem;
+            margin: 0 auto 1rem;
+            transition: all 0.4s ease;
+        }
+
+        .faculty-card:hover .faculty-avatar {
+            transform: scale(1.1);
+        }
+
+        .faculty-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.375rem;
+            color: var(--text-primary);
+        }
+
+        .faculty-role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .faculty-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Gallery */
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 0.625rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+            padding: 0.5rem 1.125rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.25rem;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            color: white;
+            padding: 1.25rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.85rem;
+        }
+
+        /* Facilities */
+        .facility-item {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .facility-item:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .facility-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-secondary);
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.375rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .facility-item:hover .facility-icon {
+            background: var(--primary);
+            color: white;
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .facility-content h5 {
+            font-size: 1.0625rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .facility-content p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Forms */
+        .form-card {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-card h4 {
+            font-size: 1.375rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 0.875rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .form-control::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 2.5rem 0 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer h5 {
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.0625rem;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Announcements Modal */
+        .announcements-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+        }
+
+        .announcements-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-primary);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 520px;
+            max-height: 75vh;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .announcements-header {
+            background: var(--accent);
+            color: white;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .announcements-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .close-modal {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.125rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+
+        .announcements-body {
+            max-height: 55vh;
+            overflow-y: auto;
+        }
+
+        .announcement-item {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .announcement-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .announcement-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .announcement-text h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .announcement-text p {
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+            font-size: 0.85rem;
+        }
+
+        .announcement-date {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        
+        /* ========== IMAGE SLIDER STYLES ========== */
+        .slider-container {
+            width: 100%;
+            height: 550px;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3));
+            padding: 4rem 3rem 3rem;
+            color: white;
+        }
+
+        .slide-overlay h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .slide-overlay p {
+            font-size: 1.35rem;
+            opacity: 0.95;
+            max-width: 750px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+            line-height: 1.6;
+        }
+
+        /* Slider Navigation Arrows */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .slider-arrow:hover {
+            background: rgba(255,255,255,0.45);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-arrow.prev {
+            left: 25px;
+        }
+
+        .slider-arrow.next {
+            right: 25px;
+        }
+
+        /* Slider Dots */
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .dot.active {
+            background: white;
+            width: 35px;
+            border-radius: 7px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .slider-container { height: 450px; }
+            .slide-overlay h2 { font-size: 2.75rem; }
+            .slide-overlay p { font-size: 1.15rem; }
+            .hero h1 { font-size: 2.25rem; }
+            .section-header h2 { font-size: 1.75rem; }
+        }
+
+        @media (max-width: 768px) {
+            .slider-container { height: 400px; }
+            .slide-overlay { padding: 2.5rem 2rem 2rem; }
+            .slide-overlay h2 { font-size: 2.25rem; }
+            .slide-overlay p { font-size: 1rem; max-width: 100%; }
+            .slider-arrow { width: 45px; height: 45px; font-size: 1.25rem; }
+            .slider-arrow.prev { left: 15px; }
+            .slider-arrow.next { right: 15px; }
+            .navbar-menu { display: none; }
+            .hamburger { display: flex; }
+            .hero { padding: 75px 0 35px; }
+            .hero h1 { font-size: 1.875rem; }
+            .hero p { font-size: 1rem; }
+            .hero-buttons { flex-direction: column; }
+            .btn-hero { width: 100%; justify-content: center; }
+            .section { padding: 2.5rem 0; }
+            .section-header h2 { font-size: 1.625rem; }
+            .card-grid, .gallery-grid { grid-template-columns: 1fr; }
+            .facility-item { flex-direction: column; text-align: center; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .slider-container { height: 320px; }
+            .slide-overlay { padding: 2rem 1.5rem 1.5rem; }
+            .slide-overlay h2 { font-size: 1.75rem; }
+            .slide-overlay p { font-size: 0.9rem; }
+            .slider-dots { bottom: 20px; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon icon-light"></i>
+        <i class="fas fa-sun icon-dark"></i>
+    </button>
+
+    <div class="announcements-icon" onclick="openAnnouncements()">
+        <i class="fas fa-bell"></i>
+        <div class="notification-badge">5</div>
+    </div>
+
+    <a href="https://wa.me/916300428806" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="announcements-modal" id="announcementsModal" onclick="closeAnnouncements(event)">
+        <div class="announcements-content" onclick="event.stopPropagation()">
+            <div class="announcements-header">
+                <h3><i class="fas fa-bullhorn me-2"></i>Latest Updates</h3>
+                <button class="close-modal" onclick="closeAnnouncements()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="announcements-body">
+                <div class="announcement-item">
+                    <div class="announcement-icon" style="background: var(--secondary); color: #0f172a;">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="announcement-text">
+                        <h4>10th Class Results Released</h4>
+                        <p>Check your marks now! Results available on student portal.</p>
+                        <div class="announcement-date">March 10, 2025</div>
+                    </div>
+                </div>
+                <div class="announcement-item">
+                    <div class="announcement-icon" style="background: var(--primary);">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="announcement-text">
+                        <h4>New Admission Forms Available</h4>
+                        <p>Applications for 2025-26 Academic Year are now open.</p>
+                        <div class="announcement-date">March 8, 2025</div>
+                    </div>
+                </div>
+                <div class="announcement-item">
+                    <div class="announcement-icon" style="background: var(--accent);">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="announcement-text">
+                        <h4>State Level Science Fair Winners</h4>
+                        <p>Congratulations to our students for winning first place!</p>
+                        <div class="announcement-date">March 5, 2025</div>
+                    </div>
+                </div>
+                <div class="announcement-item">
+                    <div class="announcement-icon" style="background: #8b5cf6;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="announcement-text">
+                        <h4>Parent-Teacher Meeting</h4>
+                        <p>Scheduled for March 15th from 10 AM to 4 PM.</p>
+                        <div class="announcement-date">March 3, 2025</div>
+                    </div>
+                </div>
+                <div class="announcement-item">
+                    <div class="announcement-icon" style="background: var(--success);">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <div class="announcement-text">
+                        <h4>Annual Sports Day Registration</h4>
+                        <p>Register now for Annual Sports Day on March 25th.</p>
+                        <div class="announcement-date">March 1, 2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#home" class="navbar-brand">
+                <div class="brand-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                Srinivasa School
+            </a>
+
+            <div class="navbar-menu">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#programs" class="nav-link">Programs</a></li>
+                    <li><a href="#faculty" class="nav-link">Faculty</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#facilities" class="nav-link">Facilities</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="login.html" class="btn-login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                </div>
+            </div>
+
+            <button class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="#home" class="mobile-nav-link" onclick="toggleMenu()">Home</a>
+            <a href="#about" class="mobile-nav-link" onclick="toggleMenu()">About</a>
+            <a href="#programs" class="mobile-nav-link" onclick="toggleMenu()">Programs</a>
+            <a href="#faculty" class="mobile-nav-link" onclick="toggleMenu()">Faculty</a>
+            <a href="#gallery" class="mobile-nav-link" onclick="toggleMenu()">Gallery</a>
+            <a href="#facilities" class="mobile-nav-link" onclick="toggleMenu()">Facilities</a>
+            <a href="#contact" class="mobile-nav-link" onclick="toggleMenu()">Contact</a>
+            <a href="login.html" class="mobile-nav-link" onclick="toggleMenu()">
+                <i class="fas fa-sign-in-alt me-2"></i>Login
+            </a>
+        </div>
+    </div>
+
+    <section id="home" style="padding: 0; margin-top: 62px;">
+    <!-- ========== IMAGE SLIDER SECTION ========== -->
+    <div class="slider-container">
+        <div class="slider-wrapper" id="sliderWrapper">
+            <!-- Slide 1 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&h=1000&fit=crop&q=80" alt="Students in classroom learning">
+                <div class="slide-overlay">
+                    <h2>Welcome to Srinivasa School</h2>
+                    <p>Nurturing minds, shaping futures, and building tomorrow's leaders through excellence in education</p>
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1920&h=1000&fit=crop&q=80" alt="Modern school building">
+                <div class="slide-overlay">
+                    <h2>State-of-the-Art Facilities</h2>
+                    <p>World-class infrastructure with modern classrooms, labs, and sports facilities</p>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1920&h=1000&fit=crop&q=80" alt="Students collaborating">
+                <div class="slide-overlay">
+                    <h2>Holistic Development</h2>
+                    <p>Fostering academic excellence, creativity, and character building</p>
+                </div>
+            </div>
+            
+            <!-- Slide 4 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1920&h=1000&fit=crop&q=80" alt="Digital learning environment">
+                <div class="slide-overlay">
+                    <h2>Digital Learning Revolution</h2>
+                    <p>Smart classrooms with cutting-edge technology for modern education</p>
+                </div>
+            </div>
+            
+            <!-- Slide 5 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&h=1000&fit=crop&q=80" alt="Graduation ceremony">
+                <div class="slide-overlay">
+                    <h2>Shaping Future Leaders</h2>
+                    <p>Join us on the journey to excellence and unlock your full potential</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <button class="slider-arrow prev" onclick="changeSlide(-1)" aria-label="Previous slide">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Next slide">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        
+        <!-- Navigation Dots -->
+        <div class="slider-dots" id="sliderDots"></div>
+    </div>
+</section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number" data-count="1500">0</span>
+                <div class="stat-label">Students</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" data-count="75">0</span>
+                <div class="stat-label">Teachers</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" data-count="25">0</span>
+                <div class="stat-label">Years of Excellence</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" data-count="98">0</span>
+                <div class="stat-label">Success Rate %</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Srinivasa School</h2>
+                <p>Established with a vision to provide world-class education and shape future leaders</p>
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Our Mission</h4>
+                    <p>To provide holistic education that nurtures intellectual, emotional, and social development, preparing students for success in an ever-changing world.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: var(--secondary); color: white;">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h4>Our Vision</h4>
+                    <p>To be recognized as a leading educational institution that inspires innovation, critical thinking, and ethical leadership in our students.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: var(--accent);">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Our Values</h4>
+                    <p>Excellence, Integrity, Compassion, Innovation, and Respect form the foundation of our educational philosophy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Academic Programs</h2>
+                <p>Comprehensive educational programs designed for different age groups and learning needs</p>
+            </div>
+            <div class="card-grid">
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>Primary School</h3>
+                        <p>Grades 1-5</p>
+                    </div>
+                    <div class="program-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Foundation in core subjects</li>
+                            <li><i class="fas fa-check"></i> Creative arts and crafts</li>
+                            <li><i class="fas fa-check"></i> Physical education</li>
+                            <li><i class="fas fa-check"></i> Character development</li>
+                            <li><i class="fas fa-check"></i> Language skills</li>
+                            <li><i class="fas fa-check"></i> Basic computer literacy</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>Middle School</h3>
+                        <p>Grades 6-8</p>
+                    </div>
+                    <div class="program-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Advanced mathematics</li>
+                            <li><i class="fas fa-check"></i> Science experiments</li>
+                            <li><i class="fas fa-check"></i> Social studies</li>
+                            <li><i class="fas fa-check"></i> Foreign languages</li>
+                            <li><i class="fas fa-check"></i> Technology integration</li>
+                            <li><i class="fas fa-check"></i> Leadership programs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>High School</h3>
+                        <p>Grades 9-12</p>
+                    </div>
+                    <div class="program-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> College preparatory courses</li>
+                            <li><i class="fas fa-check"></i> Advanced placement options</li>
+                            <li><i class="fas fa-check"></i> Career counseling</li>
+                            <li><i class="fas fa-check"></i> Research projects</li>
+                            <li><i class="fas fa-check"></i> Internship programs</li>
+                            <li><i class="fas fa-check"></i> University partnerships</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faculty" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Faculty Leadership</h2>
+                <p>Meet our dedicated leadership team committed to excellence in education</p>
+            </div>
+            <div class="card-grid">
+                <div class="faculty-card">
+                    <div class="faculty-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h4>T Babu</h4>
+                    <p class="faculty-role">Academic Director</p>
+                    <p>Leading academic excellence<br>Contact: 9493353661</p>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-avatar" style="background: var(--secondary); color: white;">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h4>K Prasanna Lakshmi</h4>
+                    <p class="faculty-role">Senior Teacher</p>
+                    <p>Experienced educator<br>Contact: 9885261789</p>
+                </div>
+                <div class="faculty-card">
+                    <div class="faculty-avatar" style="background: var(--success);">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h4>M Venkata Lakshmi</h4>
+                    <p class="faculty-role">Mother Teacher</p>
+                    <p>Nurturing young minds<br>Contact: 6281653908</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Photo Gallery</h2>
+                <p>Capturing precious moments and memories of our students' journey</p>
+            </div>
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All Photos</button>
+                <button class="filter-btn" data-filter="classroom">Classroom</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+                <button class="filter-btn" data-filter="sports">Sports</button>
+                <button class="filter-btn" data-filter="activities">Activities</button>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="classroom">
+                    <div class="gallery-image">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Happy Learning</h4>
+                        <p>Students enjoying classroom activities</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-image" style="background: var(--secondary); color: white;">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Annual Day Celebration</h4>
+                        <p>Our talented students performing</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="sports">
+                    <div class="gallery-image" style="background: var(--success);">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Sports Day Champions</h4>
+                        <p>Winners of inter-house competitions</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="activities">
+                    <div class="gallery-image" style="background: #8b5cf6;">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Art & Craft Session</h4>
+                        <p>Creative minds at work</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="classroom">
+                    <div class="gallery-image" style="background: #ec4899;">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Science Laboratory</h4>
+                        <p>Hands-on learning experience</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="events">
+                    <div class="gallery-image" style="background: var(--accent);">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Prize Distribution</h4>
+                        <p>Recognizing our achievers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="facilities" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>World-Class Facilities</h2>
+                <p>State-of-the-art infrastructure designed to enhance learning experiences</p>
+            </div>
+            <div class="card-grid">
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h5>Science Laboratories</h5>
+                        <p>Fully equipped physics, chemistry, and biology labs</p>
+                    </div>
+                </div>
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h5>Computer Labs</h5>
+                        <p>High-speed internet and modern computers</p>
+                    </div>
+                </div>
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h5>Library</h5>
+                        <p>Extensive collection of books and digital resources</p>
+                    </div>
+                </div>
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h5>Sports Complex</h5>
+                        <p>Indoor and outdoor sports facilities</p>
+                    </div>
+                </div>
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h5>Arts Center</h5>
+                        <p>Music rooms and art studios for creativity</p>
+                    </div>
+                </div>
+                <div class="facility-item">
+                    <div class="facility-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h5>Cafeteria</h5>
+                        <p>Nutritious meals in hygienic conditions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us for any inquiries or to schedule a visit</p>
+            </div>
+            <div class="row g-3">
+                <div class="col-lg-8">
+                    <div class="form-card">
+                        <h4>Send us a Message</h4>
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" placeholder="Subject" required>
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control" placeholder="Your Message" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-submit">
+                                        <i class="fas fa-paper-plane"></i>
+                                        Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-card">
+                        <h4>Contact Information</h4>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div style="display: flex; gap: 0.875rem;">
+                                <i class="fas fa-map-marker-alt" style="color: var(--primary); font-size: 1rem; margin-top: 2px;"></i>
+                                <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                                    <strong style="color: var(--text-primary);">Address:</strong><br>
+                                    123 Education Street<br>
+                                    Academic City, State 12345
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 0.875rem;">
+                                <i class="fas fa-phone" style="color: var(--primary); font-size: 1rem; margin-top: 2px;"></i>
+                                <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                                    <strong style="color: var(--text-primary);">Phone:</strong><br>
+                                    +91 9876543210
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 0.875rem;">
+                                <i class="fas fa-envelope" style="color: var(--primary); font-size: 1rem; margin-top: 2px;"></i>
+                                <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                                    <strong style="color: var(--text-primary);">Email:</strong><br>
+                                    info@srinivasaschool.edu
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 0.875rem;">
+                                <i class="fas fa-clock" style="color: var(--primary); font-size: 1rem; margin-top: 2px;"></i>
+                                <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                                    <strong style="color: var(--text-primary);">Office Hours:</strong><br>
+                                    Mon - Fri: 8:00 AM - 4:00 PM<br>
+                                    Sat: 9:00 AM - 2:00 PM
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h5>Srinivasa School</h5>
+                    <p>Committed to providing quality education and nurturing young minds to become responsible global citizens.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#programs">Programs</a></li>
+                        <li><a href="#faculty">Faculty</a></li>
+                        <li><a href="#facilities">Facilities</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Academic</h5>
+                    <ul>
+                        <li><a href="#">Academic Calendar</a></li>
+                        <li><a href="#">Curriculum</a></li>
+                        <li><a href="login.html">Student Portal</a></li>
+                        <li><a href="login.html">Teacher Portal</a></li>
+                        <li><a href="#">Online Learning</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">News & Events</a></li>
+                        <li><a href="#">Alumni</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Downloads</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Srinivasa School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ========== IMAGE SLIDER FUNCTIONALITY ==========
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+
+        // Create navigation dots
+        function createDots() {
+            const dotsContainer = document.getElementById('sliderDots');
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                if (i === 0) dot.classList.add('active');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Update slider position
+        function updateSlider() {
+            const sliderWrapper = document.getElementById('sliderWrapper');
+            if (!sliderWrapper) return;
+            sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Change slide
+        function changeSlide(direction) {
+            currentSlide += direction;
+            
+            if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            }
+            
+            updateSlider();
+            resetAutoSlide();
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetAutoSlide();
+        }
+
+        // Auto slide function
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                changeSlide(1);
+            }, 5000); // Change slide every 5 seconds
+        }
+
+        // Reset auto slide
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        // Initialize slider on page load
+        if (slides.length > 0) {
+            window.addEventListener('DOMContentLoaded', () => {
+                createDots();
+                startAutoSlide();
+            });
+        }
+
+        // ========== ORIGINAL JAVASCRIPT ==========
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        initTheme();
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        function openAnnouncements() {
+            document.getElementById('announcementsModal').style.display = 'block';
+        }
+
+        function closeAnnouncements(event) {
+            if (!event || event.target === document.getElementById('announcementsModal')) {
+                document.getElementById('announcementsModal').style.display = 'none';
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeAnnouncements();
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.getAttribute('data-filter');
+                document.querySelectorAll('.gallery-item').forEach(item => {
+                    item.style.display = (filter === 'all' || item.getAttribute('data-category') === filter) ? 'block' : 'none';
+                });
+            });
+        });
+
+        function animateCounters() {
+            document.querySelectorAll('.stat-number').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                let current = 0;
+                const increment = target / 40;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current);
+                    }
+                }, 30);
+            });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.classList.contains('stats')) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(document.querySelector('.stats'));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (document.getElementById('mobileMenu').classList.contains('active')) {
+                        toggleMenu();
+                    }
+                }
+            });
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            e.target.reset();
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.stat-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
